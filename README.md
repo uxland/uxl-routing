@@ -4,7 +4,7 @@
 
 ## Installation
 
-npm i @uxland/uxl-routing
+`npm i @uxland/uxl-routing`
 
 
 ## Usage
