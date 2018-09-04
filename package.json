@@ -1,15 +1,18 @@
 {
   "name": "@uxland/uxl-routing",
-  "version": "3.0.0",
-  "description": "UXLand Polymer Element",
-  "homepage": "https://bitbucket.org/newuibcn/uxl-routing",
-  "author": {
-    "name": "UXLand",
-    "email": "dev@uxland.es",
-    "url": "http://www.uxland.es"
+  "version": "0.0.0-development",
+  "description": "UXLand Routing",
+  "homepage": "https://github.com/uxland/uxl-routing#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uxland/uxl-routing.git"
   },
-  "main": "index.js",
-  "module": "index.js",
+  "bugs": {
+    "url": "https://github.com/uxland/uxl-routing/issues"
+  },
+  "author": "UXLand <dev@uxland.es> (http://www.uxland.es)",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "keywords": [
     "polymer",
     "web components"
@@ -61,6 +64,21 @@
     "deps:install": "npm install",
     "tdd": "node --experimental-modules node_modules/mocha/bin/_mocha --watch -r esm --ui tdd --reporter mochawesome test/unit"
   },
-  "repository": "https://bitbucket.org/newuibcn/uxl-routing",
-  "license": "Apache-2.0"
+  "scripts": {
+    "bump-bower": "gulp bump-bower && git add . && git commit -m 'Bump bower'",
+    "bump-version": "gulp bump-version",
+    "test": "polymer test",
+    "test:unit": "node --experimental-modules node_modules/mocha/bin/_mocha -r esm --ui tdd --reporter mochawesome test/unit",
+    "compile": "tsc --p gulp/tsconfig.json",
+    "dist": "tsc --p gulp/tsconfig-dist.json && gulp generate-d-ts",
+    "deps:install": "npm install",
+    "tdd": "node --experimental-modules node_modules/mocha/bin/_mocha --watch -r esm --ui tdd --reporter mochawesome test/unit"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  }
 }
