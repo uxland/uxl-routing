@@ -1,0 +1,66 @@
+{
+  "name": "@uxland/uxl-routing",
+  "version": "3.0.0",
+  "description": "UXLand Polymer Element",
+  "homepage": "https://bitbucket.org/newuibcn/uxl-routing",
+  "author": {
+    "name": "UXLand",
+    "email": "dev@uxland.es",
+    "url": "http://www.uxland.es"
+  },
+  "main": "index.js",
+  "module": "index.js",
+  "keywords": [
+    "polymer",
+    "web components"
+  ],
+  "devDependencies": {
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
+    "@polymer/iron-pages": "^3.0.0-pre.21",
+    "@types/chai": "^4.1.4",
+    "@types/lodash-es": "^4.17.0",
+    "@types/mocha": "^5.2.2",
+    "@types/redux-mock-store": "^1.0.0",
+    "@types/sinon": "^5.0.1",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "chai": "^4.1.2",
+    "dts-generator": "^2.1.0",
+    "esm": "^3.0.66",
+    "gulp": "^3.9.1",
+    "gulp-run": "^1.7.1",
+    "lodash": "3.10.1",
+    "mocha": "^5.2.0",
+    "mochawesome": "^3.0.2",
+    "nsp": "^2.6.3",
+    "path": "^0.12.7",
+    "redux-mock-store": "https://github.com/dpinart/redux-mock-store.git",
+    "require-dir": "^0.3.2",
+    "rimraf": "^2.6.2",
+    "sinon": "^6.0.0",
+    "typescript": "^2.9.2",
+    "wct-browser-legacy": "^1.0.0"
+  },
+  "dependencies": {
+    "@polymer/lit-element": "^0.5.2",
+    "@polymer/polymer": "^3.0.2",
+    "@uxland/uxl-polymer2-ts": "^1.0.5",
+    "@uxland/uxl-redux": "^1.0.0",
+    "@uxland/uxl-utilities": "^1.1.4",
+    "dot-prop-immutable": "git+https://github.com/dpinart/dot-prop-immutable.git",
+    "intl-messageformat": "^2.2.0",
+    "redux": "^4.0.0",
+    "reselect": "^3.0.1"
+  },
+  "scripts": {
+    "bump-bower": "gulp bump-bower && git add . && git commit -m 'Bump bower'",
+    "bump-version": "gulp bump-version",
+    "test": "polymer test",
+    "test:unit": "node --experimental-modules node_modules/mocha/bin/_mocha -r esm --ui tdd --reporter mochawesome test/unit",
+    "compile": "tsc --p gulp/tsconfig.json",
+    "dist": "tsc --p gulp/tsconfig-dist.json && gulp generate-d-ts",
+    "deps:install": "npm install",
+    "tdd": "node --experimental-modules node_modules/mocha/bin/_mocha --watch -r esm --ui tdd --reporter mochawesome test/unit"
+  },
+  "repository": "https://bitbucket.org/newuibcn/uxl-routing",
+  "license": "Apache-2.0"
+}
