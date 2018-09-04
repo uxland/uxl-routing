@@ -64,16 +64,6 @@
     "deps:install": "npm install",
     "tdd": "node --experimental-modules node_modules/mocha/bin/_mocha --watch -r esm --ui tdd --reporter mochawesome test/unit"
   },
-  "scripts": {
-    "bump-bower": "gulp bump-bower && git add . && git commit -m 'Bump bower'",
-    "bump-version": "gulp bump-version",
-    "test": "polymer test",
-    "test:unit": "node --experimental-modules node_modules/mocha/bin/_mocha -r esm --ui tdd --reporter mochawesome test/unit",
-    "compile": "tsc --p gulp/tsconfig.json",
-    "dist": "tsc --p gulp/tsconfig-dist.json && gulp generate-d-ts",
-    "deps:install": "npm install",
-    "tdd": "node --experimental-modules node_modules/mocha/bin/_mocha --watch -r esm --ui tdd --reporter mochawesome test/unit"
-  },
   "directories": {
     "test": "test"
   },
