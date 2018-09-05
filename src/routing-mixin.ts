@@ -5,7 +5,7 @@ import {ReduxMixin} from "@uxland/uxl-redux/redux-mixin";
 import {RoutingSelectors} from "./selectors";
 import {LitElement} from '@polymer/lit-element/lit-element';
 import {isRouteActive} from "./is-route-active";
-export interface IRoutingMixinBase<TParams = any>{
+export interface IRoutingMixinBase<TParams = any> extends LitElement{
     isRouteActive: boolean;
     route: Route;
     params: TParams;

@@ -38,11 +38,11 @@ export class RouterDemoApp extends routingMixin(Redux, routingSelectors)(LitElem
         </div>`;
     }
     subroute = '';
-    /*@property()
+    @property()
     page: string;
 
     @property({statePath: 'route', observer: 'routeChanged'})
-    route: Route;*/
+    route: Route;
 
     routeChanged(newRoute: Route, old: Route) {
         //this.page = newRoute.href;
