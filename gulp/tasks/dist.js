@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const run = require('gulp-run');
-const moduleName = 'uxl-routing';
+const moduleName = '@uxland/uxl-routing';
 const path = require('path');
 const nodeModules = 'node_modules';
 
@@ -16,10 +16,4 @@ gulp.task('generate-d-ts', () =>{
         }
     });
 });
-gulp.task('dist', () =>{
-    const dir = path.basename(path.join(__dirname, '../../../'));
-    if(String(dir) == nodeModules){
-        return run('npm run dist').exec();
-    }
-    console.log('skipped')
-});
+gulp.task("dist", () => run("npm run dist").exec());
