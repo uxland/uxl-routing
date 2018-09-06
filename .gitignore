@@ -5,4 +5,6 @@ src/**/*.js
 src/**/*.js.map
 test/**/*.js
 test/**/*.js.map
-package-lock.json
+demo/**/*.js
+demo/**/*.js.map
+mochawesome-report/
