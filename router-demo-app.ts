@@ -18,20 +18,20 @@ router.register({route: '/view1'}, {route: '/view2'}, {route: '/view3'}, {route:
 @customElement('router-demo-app')
 export class RouterDemoApp extends routingMixin(Redux, routingSelectors)(LitElement) {
 
-    _render(){
+    render(){
         return html `
         <div>
         <a href="view1">To View1</a>
         <a href="view2">To View2</a>
         <a href="view3">To View3</a>
-        <iron-pages attr-for-selected="name" selected$="${this.page}">
-            <demo-view1 name="view1">
+        <iron-pages attr-for-selected="name" selected="${this.page}">
+            <demo-view1 name="/view1">
             <h1>View1</h1>
 </demo-view1>
-             <demo-view2 name="view2">
+             <demo-view2 name="/view2">
              <h1>View 2</h1>
 </demo-view2>
-             <demo-view3 name="view3">
+             <demo-view3 name="/view3">
              <h1>View 3</h1>
 </demo-view3>
         </iron-pages>
@@ -45,7 +45,7 @@ export class RouterDemoApp extends routingMixin(Redux, routingSelectors)(LitElem
     route: Route;
 
     routeChanged(newRoute: Route, old: Route) {
-        //this.page = newRoute.href;
+        this.page = newRoute.href;
         console.log('route changed')
     }
 }
