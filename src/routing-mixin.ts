@@ -34,13 +34,6 @@ export const routingMixin: <T, Params>(reduxMixin: ReduxMixin, selectors: Routin
         query: string;
         @property()
         isRouteActive: boolean = false;
-
-        _flushProperties(){
-            let active = isRouteActive(this.route, this.subroute);
-            if(active != this.isRouteActive)
-                this._setPendingProperty('isRouteActive', active, true);
-            super._flushProperties();
-        }
         update(changedProperties: PropertyValues){
             let active = isRouteActive(this.route, this.subroute);
             if(notEqual(active, this.isRouteActive)){
