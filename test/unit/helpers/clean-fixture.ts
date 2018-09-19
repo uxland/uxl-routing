@@ -1,6 +1,6 @@
 import clean from "../../../src/helpers/clean";
 import {assert} from 'chai';
-suite('when using `clear` method', () =>{
+suite('when using `clean` method', () =>{
     test('should remove forward slashes', function () {
         assert.equal(clean('/test/something/'),'^/test/something');
     });
@@ -10,4 +10,4 @@ suite('when using `clear` method', () =>{
     test('should leave the regular expression untouched', function () {
         assert.equal(clean(/(\d)/).toString(),/(\d)/.toString());
     });
-})
+});
