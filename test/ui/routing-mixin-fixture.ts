@@ -4,7 +4,6 @@ import {default as routingSelectors, RoutingSelectors} from "../../src/selectors
 import {IRoutingMixinBase, routingMixin} from "../../src/routing-mixin";
 const assert = chai.assert;
 const fixtureElementName = 'test-fixture';
-
 const defaultComponentName = 'custom-element';
 const getComponentName = (nameBase: string) => {
     let counter = 0;

@@ -15,6 +15,7 @@ const router = new Router(store.dispatch, undefined, false);
 initializeLinkClickSupport(router);
 router.register({route: ''},{route: '/view1'}, {route: '/view2'}, {route: '/view3'});
 router.navigate(location.href);
+// @ts-ignore
 @customElement('router-demo-app')
 export class RouterDemoApp extends Redux(LitElement) {
     static get template() {

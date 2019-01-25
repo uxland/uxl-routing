@@ -17,6 +17,7 @@ const router = new Router(store.dispatch, document.baseURI);
 initializeLinkClickSupport(router);
 router.register({route: '/view1'}, {route: '/view2'}, {route: '/view3'}, {route: '/'});
 
+// @ts-ignore
 @customElement('router-demo-app')
 export class RouterDemoApp extends propertiesObserver(routingMixin(Redux, routingSelectors)(LitElement)) {
 
@@ -51,4 +52,4 @@ export class RouterDemoApp extends propertiesObserver(routingMixin(Redux, routin
         console.log('route changed');
     }
 }
-router.navigate(window.location.href).then(() => document.body.appendChild(document.createElement('router-demo-app')));
+router.navigate((<any>window).location.href).then(() => document.body.appendChild(document.createElement('router-demo-app')));

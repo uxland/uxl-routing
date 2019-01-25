@@ -1,7 +1,7 @@
 import replaceDynamicURLParts from "./replace-dynamic-parts";
 import clean from "./clean";
 import regExpResultToParams from "./reg-expr-result-to-params";
-import isNil from "lodash-es/isNil";
+import isNil from "ramda/es/isNil";
 
 export interface MatchingRoute<T = any> {
     match: RegExpMatchArray;
