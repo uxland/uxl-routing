@@ -1,20 +1,23 @@
 import * as tslib_1 from "tslib";
 import '@polymer/iron-pages';
 import * as uxlRedux from '@uxland/uxl-redux';
-import { customElement, property } from "@uxland/uxl-polymer2-ts";
+import { property, customElement } from "lit-element/lib/decorators";
+import { statePath } from "@uxland/uxl-redux/state-path";
 import { reducer } from './src/reducer';
 import * as redux from 'redux';
 import { Router } from "./src/router";
 import initializeLinkClickSupport from "./src/link-click-support";
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html } from "lit-element";
 import { routingMixin } from "./src/routing-mixin";
 import { routingSelectors } from './src/selectors';
+import { propertiesObserver } from "@uxland/uxl-utilities/properties-observer";
+var window = Mocha.reporters.Base.window;
 const store = redux.createStore(redux.combineReducers({ routing: reducer }));
 const Redux = uxlRedux.reduxMixin(store);
 const router = new Router(store.dispatch, document.baseURI);
 initializeLinkClickSupport(router);
 router.register({ route: '/view1' }, { route: '/view2' }, { route: '/view3' }, { route: '/' });
-let RouterDemoApp = class RouterDemoApp extends routingMixin(Redux, routingSelectors)(LitElement) {
+let RouterDemoApp = class RouterDemoApp extends propertiesObserver(routingMixin(Redux, routingSelectors)(LitElement)) {
     constructor() {
         super(...arguments);
         this.subroute = '';
@@ -48,7 +51,7 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", String)
 ], RouterDemoApp.prototype, "page", void 0);
 tslib_1.__decorate([
-    property({ statePath: 'route', observer: 'routeChanged' }),
+    statePath(routingSelectors.routeSelector),
     tslib_1.__metadata("design:type", Object)
 ], RouterDemoApp.prototype, "route", void 0);
 RouterDemoApp = tslib_1.__decorate([

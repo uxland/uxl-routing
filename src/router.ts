@@ -5,7 +5,7 @@ import isPushStateAvailable from "./helpers/is-push-state-available";
 import clean from "./helpers/clean";
 import {root} from "./helpers/root";
 import {spec} from '@uxland/uxl-utilities/spec';
-import difference from 'lodash-es/difference';
+import difference from 'ramda/es/difference';
 import {Dispatch} from "redux";
 import {setRouteActionCreator} from "./route";
 declare global {
