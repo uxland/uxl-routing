@@ -1,14 +1,16 @@
-import * as _ from 'lodash-es';
 import '@polymer/iron-pages';
 import * as uxlRedux from '@uxland/uxl-redux';
-import {customElement, property} from "@uxland/uxl-polymer2-ts";
+import {property, customElement} from "lit-element/lib/decorators";
+import {statePath} from "@uxland/uxl-redux/state-path";
 import {reducer, Route} from './src/reducer';
 import * as redux from 'redux';
 import {Router} from "./src/router";
 import initializeLinkClickSupport from "./src/link-click-support";
-import {LitElement,html} from "@polymer/lit-element";
+import {LitElement, html} from "lit-element";
 import {routingMixin} from "./src/routing-mixin";
 import {routingSelectors} from './src/selectors';
+import {propertiesObserver} from "@uxland/uxl-utilities/properties-observer";
+import window = Mocha.reporters.Base.window;
 const store = redux.createStore(redux.combineReducers({routing: reducer}));
 const Redux = uxlRedux.reduxMixin(store);
 const router = new Router(store.dispatch, document.baseURI);
@@ -16,7 +18,7 @@ initializeLinkClickSupport(router);
 router.register({route: '/view1'}, {route: '/view2'}, {route: '/view3'}, {route: '/'});
 
 @customElement('router-demo-app')
-export class RouterDemoApp extends routingMixin(Redux, routingSelectors)(LitElement) {
+export class RouterDemoApp extends propertiesObserver(routingMixin(Redux, routingSelectors)(LitElement)) {
 
     render(){
         return html `
@@ -41,12 +43,12 @@ export class RouterDemoApp extends routingMixin(Redux, routingSelectors)(LitElem
     @property()
     page: string;
 
-    @property({statePath: 'route', observer: 'routeChanged'})
+    @statePath(routingSelectors.routeSelector)
     route: Route;
 
     routeChanged(newRoute: Route, old: Route) {
         this.page = newRoute.href;
-        console.log('route changed')
+        console.log('route changed');
     }
 }
 router.navigate(window.location.href).then(() => document.body.appendChild(document.createElement('router-demo-app')));

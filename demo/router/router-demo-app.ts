@@ -1,12 +1,13 @@
-import * as _ from 'lodash-es';
-import {html, PolymerElement} from '@polymer/polymer/polymer-element';
+import {html, LitElement} from 'lit-element/lit-element';
 import '@polymer/iron-pages';
 import * as uxlRedux from '@uxland/uxl-redux';
-import {customElement, property} from "@uxland/uxl-polymer2-ts";
+import {property, customElement} from "lit-element/lib/decorators";
 import {reducer, Route} from '../../src/reducer';
 import * as redux from 'redux';
 import {Router} from "../../src/router";
 import initializeLinkClickSupport from "../../src/link-click-support";
+import {statePath} from "@uxland/uxl-redux/state-path";
+import routingSelectors from "../../src/selectors";
 
 const store = redux.createStore(reducer);
 const Redux = uxlRedux.reduxMixin(store);
@@ -15,7 +16,7 @@ initializeLinkClickSupport(router);
 router.register({route: ''},{route: '/view1'}, {route: '/view2'}, {route: '/view3'});
 router.navigate(location.href);
 @customElement('router-demo-app')
-export class RouterDemoApp extends Redux(PolymerElement) {
+export class RouterDemoApp extends Redux(LitElement) {
     static get template() {
         return html `
         <div>
@@ -39,7 +40,7 @@ export class RouterDemoApp extends Redux(PolymerElement) {
     @property()
     page: string;
 
-    @property({statePath: 'route', observer: 'routeChanged'})
+    @statePath(routingSelectors.routeSelector)
     route: Route;
 
     routeChanged(newRoute: Route, old: Route) {

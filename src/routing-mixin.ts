@@ -1,11 +1,12 @@
 import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin';
-import {property} from "@uxland/uxl-polymer2-ts";
+import {property} from "lit-element/lib/decorators";
 import {Route} from "./reducer";
 import {ReduxMixin} from "@uxland/uxl-redux/redux-mixin";
 import {RoutingSelectors} from "./selectors";
-import {LitElement, notEqual, PropertyValues} from '@polymer/lit-element/lit-element';
+import {LitElement, notEqual, PropertyValues} from 'lit-element/lit-element';
 import {isRouteActive} from "./is-route-active";
 import {propertiesObserver} from "@uxland/uxl-utilities/properties-observer";
+import {statePath} from '@uxland/uxl-redux/state-path';
 export interface IRoutingMixinBase<TParams = any> extends LitElement{
     isRouteActive: boolean;
     route: Route;
@@ -26,11 +27,11 @@ export const routingMixin: <T, Params>(reduxMixin: ReduxMixin, selectors: Routin
     class RoutingMixin extends reduxMixin(propertiesObserver(p)){
         @property()
         subroute: string;
-        @property({statePath: selectors.routeSelector})
+        @statePath(selectors.routeSelector)
         route: Route;
-        @property({statePath: selectors.currentParamsSelector})
+        @statePath(selectors.currentParamsSelector)
         params: Params;
-        @property({statePath: selectors.currentQuerySelector})
+        @statePath(selectors.currentQuerySelector)
         query: string;
         @property()
         isRouteActive: boolean = false;

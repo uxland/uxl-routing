@@ -1,5 +1,5 @@
-import {LitElement, html} from '@polymer/lit-element/lit-element';
-import {customElement, item, property} from "@uxland/uxl-polymer2-ts";
+import {LitElement, html} from 'lit-element/lit-element';
+import {property, query, customElement} from "lit-element/lib/decorators";
 import {default as routingSelectors, RoutingSelectors} from "../../src/selectors";
 import {IRoutingMixinBase, routingMixin} from "../../src/routing-mixin";
 const assert = chai.assert;
@@ -31,7 +31,7 @@ const createDefaultComponent: (selectors: RoutingSelectors) => DefaultTestCompon
         }
         @property()
         message: 'hello';
-        @item('header')
+        @query('#header')
         header: HTMLHeadElement;
     }
 
