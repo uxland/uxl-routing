@@ -1,13 +1,13 @@
 import { dedupingMixin } from '@polymer/polymer/lib/utils/mixin';
-import {property} from "lit-element/lib/decorators";
+import {Constructor, property} from "lit-element/lib/decorators";
 import {Route} from "./reducer";
-import {ReduxMixin} from "@uxland/uxl-redux/redux-mixin";
 import {RoutingSelectors} from "./selectors";
 import {LitElement, notEqual, PropertyValues} from 'lit-element/lit-element';
 import {isRouteActive} from "./is-route-active";
 import {propertiesObserver} from "@uxland/uxl-utilities/properties-observer";
-import {statePath} from '@uxland/uxl-redux/state-path';
-export interface IRoutingMixinBase<TParams = any> extends LitElement{
+import {ConnectMixin, ConnectMixinConstructor, ConnectMixinFunction, watch} from "@uxland/uxl-redux";
+import {MixinFunction} from "@uxland/uxl-utilities/types";
+export interface RoutingMixin<TParams = any>{
     isRouteActive: boolean;
     route: Route;
     params: TParams;
@@ -19,46 +19,48 @@ export interface IRoutingMixinBase<TParams = any> extends LitElement{
     routeChanged(current: Route, previous: Route): any;
 
 }
-export interface IRoutingMixin<T = LitElement, Params=any> extends IRoutingMixinBase<Params>, LitElement{
-    new(): IRoutingMixin<T, Params> & T & LitElement;
+export interface RoutingMixinConstructor<TParams = any> extends ConnectMixinConstructor{
+    new(...args: any[]):RoutingMixin<TParams> & ConnectMixin & LitElement;
 }
 
-export const routingMixin: <T, Params>(reduxMixin: ReduxMixin, selectors: RoutingSelectors) => (parent: any) => IRoutingMixin<T, Params> = <T, Params>(reduxMixin, selectors) => dedupingMixin((p: LitElement) =>{
-    class RoutingMixin extends reduxMixin(propertiesObserver(p)){
-        @property()
-        subroute: string;
-        @statePath(selectors.routeSelector)
-        route: Route;
-        @statePath(selectors.currentParamsSelector)
-        params: Params;
-        @statePath(selectors.currentQuerySelector)
-        query: string;
-        @property()
-        isRouteActive: boolean = false;
-        update(changedProperties: PropertyValues){
-            let active = isRouteActive(this.route, this.subroute);
-            if(notEqual(active, this.isRouteActive)){
-                let previous = this.isRouteActive;
-                this.isRouteActive = active;
-                this.isRouteActiveChanged(this.isRouteActive, previous);
+export type RoutingMixinFunction<TParams = any > = MixinFunction<RoutingMixinConstructor<TParams>>;
+
+export const routingMixin: <TParams = any>(connectMixin: ConnectMixinFunction, selectors: RoutingSelectors) => RoutingMixinFunction<TParams> = <TParams>(connectMixin, selectors) =>
+    dedupingMixin((superClass: Constructor<LitElement>) =>{
+        class RoutingMixin extends connectMixin(propertiesObserver(superClass)) implements RoutingMixin{
+            @property()
+            subroute: string;
+            @watch(selectors.routeSelector)
+            route: Route;
+            @watch(selectors.currentParamsSelector)
+            params: TParams;
+            @watch(selectors.currentQuerySelector)
+            query: string;
+            @property()
+            isRouteActive: boolean = false;
+            update(changedProperties: PropertyValues){
+                let active = isRouteActive(this.route, this.subroute);
+                if(notEqual(active, this.isRouteActive)){
+                    let previous = this.isRouteActive;
+                    this.isRouteActive = active;
+                    this.isRouteActiveChanged(this.isRouteActive, previous);
+                }
+                super.update(changedProperties);
             }
-            super.update(changedProperties);
+
+            routeChanged(current: Route, previous: Route){
+
+            }
+            isRouteActiveChanged(current: boolean, previous: boolean): void {
+            }
+
+            paramsChanged(current: Object, previous: object){
+
+            }
+
+            queryChanged(current: string, previous: string){
+
+            }
         }
-
-        routeChanged(current: Route, previous: Route){
-
-        }
-        isRouteActiveChanged(current: boolean, previous: boolean): void {
-        }
-
-        paramsChanged(current: Object, previous: object){
-
-        }
-
-        queryChanged(current: string, previous: string){
-
-        }
-
-    }
-    return (<any>RoutingMixin) as IRoutingMixin<T, Params>;
-});
+        return <any>RoutingMixin;
+    });

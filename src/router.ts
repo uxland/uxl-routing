@@ -20,9 +20,9 @@ export interface RouteHandler {
     handler?: Handler;
 }
 const isHashChangeAPIAvailable = () => typeof window !== 'undefined' && 'onhashchange' in window;
-const routeHandlerDefinedSpec = spec<RouteHandler>(r => r.handler)
-const canNavigateFromSpec = routeHandlerDefinedSpec.and(spec<RouteHandler>(r => r.handler.canNavigateFrom));
-const navigateFromSpec = routeHandlerDefinedSpec.and(spec<RouteHandler>(r => r.handler.navigatedFrom));
+const routeHandlerDefinedSpec = spec<RouteHandler>(r => r.handler !== null);
+const canNavigateFromSpec = routeHandlerDefinedSpec.and(spec<RouteHandler>(r => r.handler.canNavigateFrom !== null));
+const navigateFromSpec = routeHandlerDefinedSpec.and(spec<RouteHandler>(r => r.handler.navigatedFrom !== null));
 
 function async(makeGenerator){
     let result = (...args: any[]) => {
