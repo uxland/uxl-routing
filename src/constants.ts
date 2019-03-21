@@ -1,4 +1,4 @@
-import {actionNameBuilder} from '@uxland/uxl-redux/action-name-builder'
+import {actionNameBuilder} from '@uxland/uxl-redux'
 const prefix = 'uxl-routing';
 export const routingActionNamesFactory = (action: string) => {
     const actionsBuilder = actionNameBuilder(prefix);

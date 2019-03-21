@@ -1,11 +1,7 @@
-lib
 test
-dist
 polymer.json
 node_modules/
 demo/
-gulp/
-mochawesome-report/
 tsconfig.json
 .travis.yml
 wct.config.json

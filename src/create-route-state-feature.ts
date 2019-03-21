@@ -1,7 +1,6 @@
 import {routingActionNamesFactory} from './constants';
 import {Route} from "./reducer";
-import {Action, createAction} from "@uxland/uxl-redux/create-action";
-import createBasicReducer from "@uxland/uxl-redux/create-basic-reducer";
+import {Action, createAction, createBasicReducer} from "@uxland/uxl-redux";
 import {Reducer} from "redux";
 export const createRouteStateFeature = (name, defValue?: Route) => {
     const setActionName = routingActionNamesFactory(`set-${name}`);

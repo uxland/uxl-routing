@@ -8,6 +8,7 @@ import {spec} from '@uxland/uxl-utilities/spec';
 import difference from 'ramda/es/difference';
 import {Dispatch} from "redux";
 import {setRouteActionCreator} from "./route";
+import Timeout = NodeJS.Timeout;
 declare global {
     interface Window { __NAVIGO_WINDOW_LOCATION_MOCK__: string; }
 }
@@ -84,7 +85,7 @@ export class Router {
     private routes: RouteHandler[] = [];
     private locationChangeHandler: any;
     private usePushState: boolean;
-    private listeningInterval: number;
+    private listeningInterval: any;
     public lastUrlResolved: string = null;
     private root: string = null;
     public resolving = false;
