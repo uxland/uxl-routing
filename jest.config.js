@@ -1,5 +1,5 @@
 module.exports = {
-  testEnvironment: '@skatejs/ssr/jest',
+  testEnvironment: 'node',
   setupFilesAfterEnv: ['./test/unit/setup.ts'],
   transformIgnorePatterns:[],
   transform:{

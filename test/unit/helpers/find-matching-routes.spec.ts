@@ -2,7 +2,7 @@ import findMatchingRoutes from "../../../src/helpers/find-matching-routes";
 import {assert} from 'chai';
 const routes = (...args: string[]) => args.map(arg =>({route: arg}));
 
-suite('when using `findMatchingRoutes` method', () =>{
+describe('when using `findMatchingRoutes` method', () =>{
    test('should match a url if we have an empty string as a pattern', () =>{
        assert.exists(findMatchingRoutes('http://site.com/app/users', routes('')));
        assert.exists(findMatchingRoutes('', routes('')));
