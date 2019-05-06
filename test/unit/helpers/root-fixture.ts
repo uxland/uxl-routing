@@ -58,9 +58,4 @@ describe('when using `root` method', () =>{
            assert.equal(root(testCase.source, testCase.routes), testCase.expected);
         });
     });
-    /*test('test', () =>{
-        rootTestCases.forEach(testCase =>{
-            assert.equal(root(testCase.source, testCase.routes), testCase.expected, `should get the root as ${testCase.expected} if args are source: ${testCase.source} routes: ${testCase.routes.map(r => r.route).join(', ')}`);
-        })
-    });*/
 });
