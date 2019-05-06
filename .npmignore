@@ -1,6 +1,10 @@
 polymer.json
 node_modules/
 demo/
+src/
+test/
+jest.config.js
 tsconfig.json
+tsconfig.build.json
 .travis.yml
 wct.config.json
