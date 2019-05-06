@@ -3,7 +3,7 @@
     "suites": ["test/ui/index.html"],
     "plugins": {
         "local": {
-            "skipSeleniumInstall": true,
+            "skipSeleniumInstall": false,
             "browsers": ["chrome"]
         }
     }

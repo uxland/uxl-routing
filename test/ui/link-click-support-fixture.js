@@ -4,12 +4,12 @@ const assert = chai.assert;
 
 suite('link click support', () =>{
    test('click', () =>{
-       const router: any = {
+       const router = {
            navigate: sinon.stub()
        };
        initializeLinkClickSupport(router);
-       let fix: HTMLDivElement = fixture('test-fixture');
-       let link: HTMLAnchorElement = fix.querySelector('#link');
+       let fix = fixture('test-fixture');
+       let link = fix.querySelector('#link');
        link.click();
        assert.isTrue(router.navigate.calledOnce);
    })

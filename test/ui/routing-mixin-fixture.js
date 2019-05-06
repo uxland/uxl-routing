@@ -1,37 +1,39 @@
-import {LitElement, html} from 'lit-element/lit-element';
+import {html, LitElement} from 'lit-element/lit-element';
 import {property, query, customElement} from "lit-element/lib/decorators";
 import {default as routingSelectors, RoutingSelectors} from "../../src/selectors";
-import {IRoutingMixinBase, routingMixin} from "../../src/routing-mixin";
+import {routingMixin} from "../../src/routing-mixin";
 const assert = chai.assert;
 const fixtureElementName = 'test-fixture';
 const defaultComponentName = 'custom-element';
-const getComponentName = (nameBase: string) => {
+const getComponentName = (nameBase) => {
     let counter = 0;
     return () => `${nameBase}${++counter}`;
 };
 const getDefaultComponentName = getComponentName(defaultComponentName);
-const addComponentToFixture = <T>(componentName: string) => {
-    const container: HTMLDivElement = fixture(fixtureElementName);
-    const component: T = <any>document.createElement(componentName);
-    container.appendChild(<any>component);
+const addComponentToFixture = (componentName) => {
+    const container = fixture(fixtureElementName);
+    const component = document.createElement(componentName);
+    container.appendChild(component);
     return component;
 };
-interface DefaultTestComponent extends IRoutingMixinBase {
+/*
+interface DefaultTestComponent {
     header: HTMLHeadElement;
 }
+*/
 
-const createDefaultComponent: (selectors: RoutingSelectors) => DefaultTestComponent = (selectors) => {
+const createDefaultComponent = (selectors) => {
     const componentName = getDefaultComponentName();
     const reduxMixinMock = (p) => p;
     @customElement(componentName)
-    class Component extends routingMixin(reduxMixinMock , selectors)(LitElement) implements DefaultTestComponent {
+    class Component extends routingMixin(reduxMixinMock , selectors)(LitElement) {
         render(){
             return html `<h1 id="header">${this.message}</h1>`
         }
         @property()
-        message: 'hello';
+        message = 'hello';
         @query('#header')
-        header: HTMLHeadElement;
+        header;
     }
 
     return addComponentToFixture(componentName);

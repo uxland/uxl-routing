@@ -4,9 +4,11 @@ import {Route} from "./reducer";
 import {RoutingSelectors} from "./selectors";
 import {LitElement, notEqual, PropertyValues} from 'lit-element/lit-element';
 import {isRouteActive} from "./is-route-active";
-import {propertiesObserver} from "@uxland/uxl-utilities/properties-observer";
-import {ConnectMixin, ConnectMixinConstructor, ConnectMixinFunction, watch} from "@uxland/uxl-redux";
-import {MixinFunction} from "@uxland/uxl-utilities/types";
+import {propertiesObserver} from "@uxland/uxl-utilities/es/properties-observer";
+
+import {MixinFunction} from "@uxland/uxl-utilities";
+import {ConnectMixin, ConnectMixinConstructor, ConnectMixinFunction} from "@uxland/lit-redux-connect";
+import {watch} from "@uxland/lit-redux-connect/es/watch";
 export interface RoutingMixin<TParams = any>{
     isRouteActive: boolean;
     route: Route;
