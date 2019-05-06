@@ -11,3 +11,5 @@ export * from './link-click-support';
 export * from './reducer';
 export * from './route';
 export * from './router';
+export * from './routing-mixin';
+export * from './selectors';

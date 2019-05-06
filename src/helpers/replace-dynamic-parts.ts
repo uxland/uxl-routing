@@ -20,4 +20,3 @@ export function replaceDynamicURLParts(route) {
     }
     return { regexp, paramNames };
 }
-export default replaceDynamicURLParts;

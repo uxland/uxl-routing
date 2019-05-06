@@ -1,4 +1,4 @@
-import extractGetParameters from "../../../src/helpers/extract-get-parameters";
+import {extractGetParameters} from "../../../src";
 import {assert} from 'chai';
 
 describe('when using `extractGetParameters` method', () =>{

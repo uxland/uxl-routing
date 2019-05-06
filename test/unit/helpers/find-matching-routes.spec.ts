@@ -1,4 +1,4 @@
-import findMatchingRoutes from "../../../src/helpers/find-matching-routes";
+import {findMatchingRoutes} from "../../../src";
 import {assert} from 'chai';
 const routes = (...args: string[]) => args.map(arg =>({route: arg}));
 

@@ -1,8 +1,8 @@
-import extractGetParameters from "./helpers/extract-get-parameters";
-import getOnlyUrl from "./helpers/get-only-url";
-import findMatchingRoutes from "./helpers/find-matching-routes";
-import isPushStateAvailable from "./helpers/is-push-state-available";
-import clean from "./helpers/clean";
+import {extractGetParameters} from "./helpers/extract-get-parameters";
+import {getOnlyUrl} from "./helpers/get-only-url";
+import {findMatchingRoutes} from "./helpers/find-matching-routes";
+import {isPushStateAvailable} from "./helpers/is-push-state-available";
+import {clean} from "./helpers/clean";
 import {root} from "./helpers/root";
 import {allPass, difference, pathSatisfies, propSatisfies} from 'ramda';
 import {Dispatch} from "redux";

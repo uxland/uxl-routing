@@ -1,6 +1,6 @@
-import replaceDynamicURLParts from "./replace-dynamic-parts";
-import clean from "./clean";
-import regExpResultToParams from "./reg-expr-result-to-params";
+import {replaceDynamicURLParts} from "./replace-dynamic-parts";
+import {clean} from "./clean";
+import {regExpResultToParams} from "./reg-expr-result-to-params";
 import isNil from "ramda/es/isNil";
 
 export interface MatchingRoute<T = any> {
@@ -27,4 +27,3 @@ export const findMatchingRoutes: <T extends {route: string}>(url: string, routes
         return bSegments.length - aSegments.length;
     })
 };
-export default findMatchingRoutes;

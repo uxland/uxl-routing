@@ -1,5 +1,5 @@
 import {Route} from "./reducer";
-import findMatchingRoutes from "./helpers/find-matching-routes";
+import {findMatchingRoutes} from "./helpers/find-matching-routes";
 
 export const computePage: (currentRoute: Route, defaultPage: string, isRouteActive: boolean, route: string) => string = (currentRoute, defaultPage, isRouteActive, route) => {
     let page = undefined;
@@ -13,4 +13,4 @@ export const computePage: (currentRoute: Route, defaultPage: string, isRouteActi
             page = defaultPage;
     }
     return page;
-}
+};

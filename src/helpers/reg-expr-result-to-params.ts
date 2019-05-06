@@ -8,4 +8,3 @@ export function regExpResultToParams(match: RegExpMatchArray, names: string[]): 
             return params;
         }, {});
 }
-export default regExpResultToParams;

@@ -25,4 +25,3 @@ export const setRoutingSelectors: (selector: (state: any) => RoutingState) => vo
     routingSelectors.currentQuerySelector = querySelectorFactory(routingSelectors.routeSelector)
 };
 setRoutingSelectors(defaultLocalizationSelector);
-export default routingSelectors;

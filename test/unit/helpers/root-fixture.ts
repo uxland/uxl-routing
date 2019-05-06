@@ -1,4 +1,4 @@
-import {root} from "../../../src/helpers/root";
+import {root} from "../../../src";
 
 import {assert} from 'chai';
 
@@ -52,9 +52,9 @@ const rootTestCases = [
     }
 ];
 
-suite('when using `root` method', () =>{
+describe('when using `root` method', () =>{
     rootTestCases.forEach(testCase =>{
-        test(`should get the root as ${testCase.expected} if args are source: ${testCase.source} routes: ${testCase.routes.map(r => r.route).join(', ')}`, () =>{
+        it(`should get the root as ${testCase.expected} if args are source: ${testCase.source} routes: ${testCase.routes.map(r => r.route).join(', ')}`, () =>{
            assert.equal(root(testCase.source, testCase.routes), testCase.expected);
         });
     });
@@ -63,4 +63,4 @@ suite('when using `root` method', () =>{
             assert.equal(root(testCase.source, testCase.routes), testCase.expected, `should get the root as ${testCase.expected} if args are source: ${testCase.source} routes: ${testCase.routes.map(r => r.route).join(', ')}`);
         })
     });*/
-})
+});

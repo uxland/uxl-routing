@@ -5,4 +5,3 @@ export const isPushStateAvailable = () =>{
         window.history.pushState
     );
 };
-export default isPushStateAvailable;

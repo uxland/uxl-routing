@@ -1,4 +1,4 @@
-import isPushStateAvailable from "./is-push-state-available";
+import {isPushStateAvailable} from "./is-push-state-available";
 
 export const getOnlyUrl = (url: string, useHash: boolean = false, hash: string = '#') =>{
     let onlyURL = url, split;
@@ -18,4 +18,3 @@ export const getOnlyUrl = (url: string, useHash: boolean = false, hash: string =
 
     return onlyURL;
 };
-export default getOnlyUrl;

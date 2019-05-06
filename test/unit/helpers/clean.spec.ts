@@ -1,4 +1,4 @@
-import clean from "../../../src/helpers/clean";
+import {clean} from "../../../src";
 import {assert} from 'chai';
 describe('when using `clean` method', () =>{
     it('should remove forward slashes', function () {
