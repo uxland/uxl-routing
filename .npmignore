@@ -8,3 +8,5 @@ tsconfig.json
 tsconfig.build.json
 .travis.yml
 wct.config.json
+index.html
+router-demo-app.ts
