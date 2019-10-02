@@ -25,19 +25,21 @@ export interface RoutingMixinConstructor<TParams = any> extends ConnectMixinCons
 
 export type RoutingMixinFunction<TParams = any> = MixinFunction<RoutingMixinConstructor<TParams>>;
 
-export const routingMixin: <T>(store: Store<any, any>, selectors: RoutingSelectors) => RoutingMixinFunction = <T>(
+export const routingMixin: <TParams>(store: Store<any, any>, selectors: RoutingSelectors) => RoutingMixinFunction = <
+  TParams
+>(
   store,
   selectors
 ) =>
   dedupingMixin((superClass: ConnectMixinConstructor) => {
     const watchOptions = { store };
-    class RoutingMixinClass extends connect(store)(superClass) implements RoutingMixin<T> {
+    class RoutingMixinClass extends connect(store)(superClass) implements RoutingMixin<TParams> {
       @property()
       subroute: string;
       @watch(selectors.routeSelector, watchOptions)
       route: Route;
       @watch(selectors.currentParamsSelector, watchOptions)
-      params: T;
+      params: TParams;
       @watch(selectors.currentQuerySelector, watchOptions)
       query: string;
       @property()
@@ -60,39 +62,3 @@ export const routingMixin: <T>(store: Store<any, any>, selectors: RoutingSelecto
     }
     return <any>RoutingMixinClass;
   });
-
-// export const routingMixin: <TParams = any>(
-//   connectMixin: ConnectMixinFunction,
-//   selectors: RoutingSelectors
-// ) => RoutingMixinFunction<TParams> = <TParams>(connectMixin, selectors) =>
-//   dedupingMixin((superClass: Constructor<LitElement>) => {
-//     class RoutingMixin extends connectMixin(propertiesObserver(superClass)) implements RoutingMixin {
-//       @property()
-//       subroute: string;
-//       @watch(selectors.routeSelector)
-//       route: Route;
-//       @watch(selectors.currentParamsSelector)
-//       params: TParams;
-//       @watch(selectors.currentQuerySelector)
-//       query: string;
-//       @property()
-//       isRouteActive: boolean = false;
-//       update(changedProperties: PropertyValues) {
-//         let active = isRouteActive(this.route, this.subroute);
-//         if (notEqual(active, this.isRouteActive)) {
-//           let previous = this.isRouteActive;
-//           this.isRouteActive = active;
-//           this.isRouteActiveChanged(this.isRouteActive, previous);
-//         }
-//         super.update(changedProperties);
-//       }
-
-//       routeChanged(current: Route, previous: Route) {}
-//       isRouteActiveChanged(current: boolean, previous: boolean): void {}
-
-//       paramsChanged(current: Object, previous: object) {}
-
-//       queryChanged(current: string, previous: string) {}
-//     }
-//     return <any>RoutingMixin;
-//   });
