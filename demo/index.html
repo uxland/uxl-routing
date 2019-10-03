@@ -1,21 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-    <title>uxl-routing demo</title>
-    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script type="module" src="./router/router-demo-app.js"></script>
-
-    <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
-      </style>
-    </custom-style>
+    <meta charset="UTF-8" />
+    <base href="./demo" />
+    <title>UXL Routing</title>
+    <script src="/demo/settings.js"></script>
+    <script>
+      document.addEventListener(
+        'WebComponentsReady',
+        function componentsReady() {
+          document.removeEventListener('WebComponentsReady', componentsReady, false);
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = '<%= htmlWebpackPlugin.files.chunks["main"].entry %>';
+          var refScript = document.body.getElementsByTagName('script')[0];
+          refScript.parentNode.insertBefore(script, refScript);
+        },
+        false
+      );
+    </script>
   </head>
+
   <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic uxl-routing demo</h3>
-      <router-demo-app></router-demo-app>
-    </div>
+    <script defer src="<%= htmlWebpackPlugin.options.paths.webcomponents %>"></script>
   </body>
 </html>
