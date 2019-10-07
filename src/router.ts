@@ -186,7 +186,7 @@ export class Router {
 
   private cancelPrevious() {
     try {
-      this.generator && this.generator.throw();
+      this.generator && this.generator.throw(undefined);
     } catch (e) {}
   }
 
