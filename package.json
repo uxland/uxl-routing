@@ -82,6 +82,8 @@
     "travis-deploy-once": "travis-deploy-once",
     "readme:coverage": "node_modules/.bin/jest-badges-readme",
     "semantic-release": "semantic-release",
+    "semantic-release:local": "npm run dist && semantic-release --no-ci --debug",
+    "postsemantic-release:local": "git checkout -- package*",
     "serve": "webpack-dev-server --hot --inline --progress"
   },
   "directories": {
