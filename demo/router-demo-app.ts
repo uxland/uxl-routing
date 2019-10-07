@@ -34,6 +34,7 @@ export class RouterDemoApp extends Routing(propertiesObserver(LitElement)) {
   render() {
     return html`
       <div>
+        <h1>IRON-PAGES</h1>
         <a href="./view1">To View1</a>
         <a href="./view2">To View2</a>
         <a href="./view3">To View3</a>

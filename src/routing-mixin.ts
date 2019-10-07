@@ -50,17 +50,14 @@ export const routingMixin: <TParams>(store: Store<any, any>, selectors: RoutingS
       }
 
       update(changedProps: PropertyValues) {
-        const needToComputeIsRouteActive = changedProps && (changedProps.has('route') || changedProps.has('subroute'));
-        if (needToComputeIsRouteActive) {
-          let active = isRouteActive(
-            this.route,
-            changedProps.get('route') && (changedProps.get('route') as Route).href
-          );
-          if (notEqual(active, this.isRouteActive)) {
-            let previous = this.isRouteActive;
-            this.isRouteActive = active;
-            this.isRouteActiveChanged(this.isRouteActive, previous);
-          }
+        const attrForSelected =
+          this.parentElement.nodeName === 'IRON-PAGES' && this.parentElement.getAttribute('attr-for-selected');
+        const subroute = this.hasAttribute(attrForSelected) ? this.getAttribute(attrForSelected) : '';
+        let active = isRouteActive(this.route, subroute);
+        if (notEqual(active, this.isRouteActive)) {
+          let previous = this.isRouteActive;
+          this.isRouteActive = active;
+          this.isRouteActiveChanged(this.isRouteActive, previous);
         }
 
         return super.update(changedProps);
