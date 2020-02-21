@@ -2,6 +2,7 @@ import {replaceDynamicURLParts} from "./replace-dynamic-parts";
 import {clean} from "./clean";
 import {regExpResultToParams} from "./reg-expr-result-to-params";
 import isNil from "ramda/es/isNil";
+import { getOnlyUrl } from './get-only-url';
 
 export interface MatchingRoute<T = any> {
     match: RegExpMatchArray;
@@ -11,8 +12,9 @@ export interface MatchingRoute<T = any> {
 
 export const findMatchingRoutes: <T extends {route: string}>(url: string, routes: T[], includeSubRoutes?: boolean, addWildCard?: boolean) => MatchingRoute<T>[] = (url, routes, includeSubRoutes, addWildCard) => {
     let result = isNil(url) ? [] : routes.map(route => {
+        let onlyUrl = getOnlyUrl(url);
         let {regexp, paramNames} = replaceDynamicURLParts(clean(addWildCard ? route.route + '/*' : route.route));
-        let match = url.replace(/^\/+/, '/').match(regexp);
+        let match = onlyUrl.replace(/^\/+/, '/').match(regexp);
         let params = regExpResultToParams(match, paramNames);
         return match ? {match, route, params} : null
     }).filter(m => m !== null);

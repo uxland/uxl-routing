@@ -65,8 +65,7 @@ const routesToDeactivate = (last: string, current: string, routes: RouteHandler[
 function* navigate(last: string, current: string, routes: RouteHandler[], router: Router) {
     yield;
     let result = last;
-    let onlyUrl = getOnlyUrl(current);
-    let matchingRoute = findMatchingRoutes(onlyUrl, routes)[0];
+    let matchingRoute = findMatchingRoutes(current, routes)[0];
     if (matchingRoute) {
         let query = extractGetParameters(current);
         let toDeactivate = routesToDeactivate(last, current, routes);
@@ -141,7 +140,7 @@ export class Router {
 
     register(...routes: RouteHandler[]) {
         this.routes.push(...routes);
-        if (findMatchingRoutes(getOnlyUrl(this.getRouteUrl(window.location.href)), routes).length)
+        if (findMatchingRoutes(this.getRouteUrl(window.location.href), routes).length)
             this.navigate(window.location.href);
     }
 
