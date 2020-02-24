@@ -118,11 +118,11 @@ export class Router {
         return '';
     }
 
-    async navigate(route: string): Promise<boolean> {
+    async navigate(route: string, force = false): Promise<boolean> {
 
         try {
             let url = this.getRouteUrl(route);
-            if (url === this.lastUrlResolved)
+            if (!force && url === this.lastUrlResolved)
                 return false;
             this.routing = true;
             this.cancelPrevious();
@@ -141,7 +141,7 @@ export class Router {
     register(...routes: RouteHandler[]) {
         this.routes.push(...routes);
         if (findMatchingRoutes(this.getRouteUrl(window.location.href), routes).length)
-            this.navigate(window.location.href);
+            this.navigate(window.location.href, true);
     }
 
     reset() {
