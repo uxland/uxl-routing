@@ -23,7 +23,7 @@
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@polymer/iron-pages": "^3.0.1",
     "@types/jest": "^24.0.11",
-    "@types/ramda": "^0.25.48",
+    "@types/ramda": "^0.27.4",
     "@types/redux-mock-store": "^1.0.0",
     "caf": "^7.0.6",
     "chai": "^4.1.2",
@@ -48,7 +48,7 @@
     "@uxland/uxl-redux": "^3.0.4",
     "@uxland/uxl-utilities": "^3.3.2",
     "lit-element": "^2.0.1",
-    "ramda": "^0.26.1",
+    "ramda": "^0.27.0",
     "redux": "^4.0.0",
     "reselect": "^4.0.0",
     "tslib": "^1.9.3"
