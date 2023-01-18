@@ -1,7 +1,7 @@
 import {connect, ConnectMixin, ConnectMixinConstructor} from '@uxland/lit-redux-connect';
 import {watch} from '@uxland/lit-redux-connect/es/watch';
 import {dedupingMixin, MixinFunction} from '@uxland/uxl-utilities';
-import {property} from 'lit/decorators';
+import {property} from 'lit/decorators.js';
 import {LitElement, notEqual, PropertyValues} from 'lit';
 import {Store} from 'redux';
 import {isRouteActive} from './is-route-active';
