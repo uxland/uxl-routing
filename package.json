@@ -44,10 +44,10 @@
     "wct-browser-legacy": "^1.0.2"
   },
   "dependencies": {
-    "@uxland/lit-redux-connect": "^1.1.3",
-    "@uxland/uxl-redux": "^3.0.4",
-    "@uxland/uxl-utilities": "^3.3.2",
-    "lit-element": "^2.0.1",
+    "@uxland/lit-redux-connect": "^2.0.1",
+    "@uxland/uxl-redux": "^4.0.0",
+    "@uxland/uxl-utilities": "^4.0.1",
+    "lit": "^2.6.1",
     "ramda": "^0.27.0",
     "redux": "^4.0.0",
     "reselect": "^4.0.0",

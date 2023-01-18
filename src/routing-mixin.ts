@@ -1,12 +1,12 @@
-import { connect, ConnectMixin, ConnectMixinConstructor } from '@uxland/lit-redux-connect';
-import { watch } from '@uxland/lit-redux-connect/es/watch';
-import { dedupingMixin, MixinFunction } from '@uxland/uxl-utilities';
-import { property } from 'lit-element/lib/decorators';
-import { LitElement, notEqual, PropertyValues } from 'lit-element/lit-element';
-import { Store } from 'redux';
-import { isRouteActive } from './is-route-active';
-import { Route } from './reducer';
-import { RoutingSelectors } from './selectors';
+import {connect, ConnectMixin, ConnectMixinConstructor} from '@uxland/lit-redux-connect';
+import {watch} from '@uxland/lit-redux-connect/es/watch';
+import {dedupingMixin, MixinFunction} from '@uxland/uxl-utilities';
+import {property} from 'lit/decorators';
+import {LitElement, notEqual, PropertyValues} from 'lit';
+import {Store} from 'redux';
+import {isRouteActive} from './is-route-active';
+import {Route} from './reducer';
+import {RoutingSelectors} from './selectors';
 
 export interface RoutingMixin<TParams = any> {
   isRouteActive: boolean;
@@ -19,20 +19,20 @@ export interface RoutingMixin<TParams = any> {
   queryChanged(current: string, previous: string);
   routeChanged(current: Route, previous: Route): any;
 }
-export interface RoutingMixinConstructor<TParams = any> extends ConnectMixinConstructor, RoutingMixin<TParams> {
+export interface RoutingMixinConstructor<TParams = any>
+  extends ConnectMixinConstructor,
+    RoutingMixin<TParams> {
   new (...args: any[]): RoutingMixin<TParams> & ConnectMixin & LitElement;
 }
 
 export type RoutingMixinFunction<TParams = any> = MixinFunction<RoutingMixinConstructor<TParams>>;
 
-export const routingMixin: <TParams>(store: Store<any, any>, selectors: RoutingSelectors) => RoutingMixinFunction = <
-  TParams
->(
-  store,
-  selectors
-) =>
+export const routingMixin: <TParams>(
+  store: Store<any, any>,
+  selectors: RoutingSelectors
+) => RoutingMixinFunction = <TParams>(store, selectors) =>
   dedupingMixin((superClass: ConnectMixinConstructor) => {
-    const watchOptions = { store };
+    const watchOptions = {store};
     class RoutingMixinClass extends connect(store)(superClass) implements RoutingMixin<TParams> {
       @property()
       subroute: string;
